@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iTunes API Preview</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/loading.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">iTunes API Preview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <form id="search-form">
+        <div class="input-group">
+          <input id="search-term" type="text" class="form-control" placeholder="Search Term">
+            <span class="input-group-btn">
+              <button id="search-button" class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>
+            </span>
+        </div>
+      </form>
+      <div id="search-result-container">
+        <div class="loading-spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div id="search-result">
+        </div>
+      </div>
+    </div>
+
+    <script id="search-result-template" type="text/ractive">
+      <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>#</th>
+          <th class="column-m">Artist</th>
+          <th class="column-m">Collection</th>
+          <th class="column-m">Track</th>
+          <th>Release</th>
+          <th>Artwork</th>
+          <th>Preview</th>
+        </tr>
+        {{#results:r}}
+        <tr>
+          <td>{{@index + 1}}</td>
+          <td><a href="{{artistViewUrl}}" target="_new">{{artistName}}</a></td>
+          <td><a href="{{collectionViewUrl}}" target="_new">{{collectionName}}</a></td>
+          <td><a href="{{trackViewUrl}}" target="_new">{{trackName}}</a></td>
+          <td>{{getSimpleDate(r)}}</td>
+          <td>
+            <img src="{{artworkUrl100}}">
+            <button data-clipboard-text="{{artworkUrl100}}" type="button" class="btn btn-default btn-xs copy-button" data-toggle="tooltip" data-placement="bottom" title="Copied!">Copy URL</button>
+          </td>
+          <td>
+            <audio src="{{previewUrl}}" controls />
+            <button data-clipboard-text="{{previewUrl}}" type="button" class="btn btn-default btn-xs copy-button" data-toggle="tooltip" data-placement="bottom" title="Copied!">Copy URL</button>
+          </td>
+        </tr>
+        {{/results}}
+        </tbody>
+      </table>
+    </script>
+    <script id="search-error-template" type="text/ractive">
+      <div class="alert alert-danger" role="alert"><b>Failed! </b> {{message}}</div>
+    </script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
