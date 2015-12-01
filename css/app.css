@@ -1,0 +1,25 @@
+body {
+  padding-top: 80px;
+}
+
+#search-result-container {
+  padding-top: 40px;
+}
+
+.column-m {
+  width: 200px;
+}
+
+img {
+  display:block;
+  clear:both;
+}
+
+audio {
+  display:block;
+  clear:both;
+}
+
+.copy-button {
+  margin-top: 4px;
+}
