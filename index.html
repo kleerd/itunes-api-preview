@@ -54,9 +54,18 @@
         {{#results:r}}
         <tr>
           <td>{{@index + 1}}</td>
-          <td><a href="{{artistViewUrl}}" target="_new">{{artistName}}</a></td>
-          <td><a href="{{collectionViewUrl}}" target="_new">{{collectionName}}</a></td>
-          <td><a href="{{trackViewUrl}}" target="_new">{{trackName}}</a></td>
+          <td>
+            <a href="{{artistViewUrl}}" target="_new">{{artistName}}</a><br />
+            <button data-clipboard-text="{{artistId}}" type="button" class="btn btn-default btn-xs copy-button" data-toggle="tooltip" data-placement="bottom" title="Copied!">Copy artistId</button>
+          </td>
+          <td>
+            <a href="{{collectionViewUrl}}" target="_new">{{collectionName}}</a><br />
+            <button data-clipboard-text="{{collectionId}}" type="button" class="btn btn-default btn-xs copy-button" data-toggle="tooltip" data-placement="bottom" title="Copied!">Copy collectionId</button>
+          </td>
+          <td>
+            <a href="{{trackViewUrl}}" target="_new">{{trackName}}</a><br />
+            <button data-clipboard-text="{{trackId}}" type="button" class="btn btn-default btn-xs copy-button" data-toggle="tooltip" data-placement="bottom" title="Copied!">Copy trackId</button>
+          </td>
           <td>{{getSimpleDate(r)}}</td>
           <td>
             <img src="{{artworkUrl100}}">
